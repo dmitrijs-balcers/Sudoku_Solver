@@ -8,66 +8,119 @@ namespace Sudoku_Solver
 {
     class Program
     {
-        private static int[,] array = new int[3,3];
+        private static ArrayList array = new ArrayList();
+        private const short A = 6;
 
         static void Main(string[] args)
         {
-            for (int i = 0; i < 3; i++)
+
+            for (int y = 0; y < A; y++)
             {
-                for (int y = 0; y < 3; y++)
+                for (int x = 0; x < A; x++)
                 {
+                    Number num = new Number();
+                    num.y = y;
+                    num.x = x;
+
                     int number;
                     string input = Console.ReadLine();
-                    if (Int32.TryParse(input, out number))
+                    if (input != "" && Int32.TryParse(input, out number))
                     {
-                        array[i, y] = number;
+                        num.number = number;
+                        num.initial = true;
                     }
-                    else 
-                    {
-                        array[i, y] = 0;
-                    }
+                    else
+                        num.isEmpty = true;
+                    array.Add(num);
                     
                     Console.CursorTop--;
-                    Console.CursorLeft = y + 1;
+                    Console.CursorLeft = x + 1;
                 }
                 Console.WriteLine();
             }
             Console.WriteLine();
+            PrintGrid();
+            Console.WriteLine("Contains Duplicates: " + ContainsDuplicates(array));
 
-            int count = 0;
-            foreach (int item in array)
+            CountFilledNumbersIn3x3();
+
+            ArrayList tempArray = new ArrayList();
+            for (int y1 = 1; y1 < 3; y1++)
             {
-                if (count == 3)
+                for (int x1 = 1; x1 < 3; x1++)
+                {
+                    foreach (Number item in array)
+                    {
+                        if ((item.x < x1 * 3 && item.x > (x1 - 1) * 3) && (item.y < y1 * 3 && item.y > (y1 - 1) * 3))
+                        {
+                            Console.Write(x1 + ", " + y1 + "n: " + item.number +"| ");
+                            tempArray.Add(item);
+                        }
+                    }
+                    Console.WriteLine("Temp Array " + y1 + "," + x1 +"Contains Duplicates: " + ContainsDuplicates(tempArray));
+                    tempArray = new ArrayList();
+                }
+            }
+
+            foreach (Number item in array)
+            {
+                if (item.isEmpty == true)
+                {
+                    for (int i = 1; i < 10; i++)
+                    {
+                        item.number = i;
+                        if (!ContainsDuplicates(array))
+                        {
+                            PrintGrid();
+                            Console.WriteLine("NumberFound!!!" + item.number);
+                            break;
+                        }
+                    }
+                }
+            }
+            Console.ReadLine();
+        }
+
+        private static void CountFilledNumbersIn3x3()
+        {
+            int numbersFilled = 0;
+            if (!ContainsDuplicates(array))
+            {
+                foreach (Number item in array)
+                    if (item.number != 0)
+                        numbersFilled++;
+            }
+        }
+
+        private static void PrintGrid()
+        {
+            int count = 0;
+            foreach (Number item in array)
+            {
+                if (count == A)
                 {
                     Console.WriteLine();
                     count = 0;
                 }
-                Console.Write(item + "\t");
+                Console.Write(item.number + "\t");
                 count++;
             }
-
             Console.WriteLine();
-           
-            Console.WriteLine("Does not Contain Duplicates: " + ContainsDuplicates(array));
-
-            Console.ReadLine();
         }
 
-        public static bool ContainsDuplicates(int[,] arrayToCheck) 
+        public static bool ContainsDuplicates(ArrayList arrayToCheck) 
         {
             ArrayList arrayList = new ArrayList();
-            foreach (int item in array)
+            foreach (Number item in arrayToCheck)
             {
-                if (item != 0)
+                if (item.number != 0)
                 {
-                    if (arrayList.Contains(item))
-                    {
-                        return false;
-                    }
-                    arrayList.Add(item);
+                    if (arrayList.Contains(item.number))
+                        return true;
+                    arrayList.Add(item.number);
                 }
             }
-            return true;
+            return false;
         }
     }
 }
