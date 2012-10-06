@@ -14,5 +14,9 @@ namespace Sudoku_Solver
         public bool initial { get; set; }
         public bool isEmpty { get; set; }
         public ArrayList buffer { get; set; }
+
+        public String toString() {
+            return "|num: " + number + " x|y - " + x + "|" + y + ". isInitial: " + initial + ", isEmpty: " + isEmpty + ", buffer: " + buffer.ToString();
+        }
     }
 }

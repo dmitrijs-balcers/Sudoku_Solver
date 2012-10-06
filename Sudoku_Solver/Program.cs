@@ -13,10 +13,72 @@ namespace Sudoku_Solver
 
         static void Main(string[] args)
         {
+            Console.WriteLine("Welkome to Sudou Solver");
 
-            for (int y = 0; y < A; y++)
+            bool exit = false;
+            while (!exit)
             {
-                for (int x = 0; x < A; x++)
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Please choose an option:");
+                Console.WriteLine("1 - Load Numbers");
+                Console.WriteLine("2 - Check Each 3x3 array");
+                Console.WriteLine("3 - Print Grid");
+                Console.WriteLine("4 - See info of Number x|y");
+                Console.WriteLine("5 - CheckForCorrectNumber");
+                Console.WriteLine("9 - Exit programm");
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+
+                string input = Console.ReadLine();
+                int opt;
+                
+                
+                Int32.TryParse(input.Substring(0, 1), out opt);
+                switch (opt)
+                {
+                    case 1:
+                        LoadNumbers();
+                        break;
+                    case 2:
+                        CheckEach3x3ArrayForDuplicates();
+                        break;
+                    case 3:
+                        PrintGrid();
+                        break;
+                    case 4:
+                        int x;
+                        int y;
+                        Console.WriteLine("Insert x");
+                        string inp = Console.ReadLine();
+                        Int32.TryParse(inp.Substring(0, 1), out x);
+                        Console.WriteLine("Insert y");
+                        inp = Console.ReadLine();
+                        Int32.TryParse(inp.Substring(0, 1), out y);
+                        foreach (Number item in array)
+                        {
+                            if (item.x == x && item.y == y)
+                            {
+                                Console.WriteLine(item.toString());
+                            }
+                        }
+                        break;
+                    case 5:
+                        CheckForCorrectNumber();
+                        break;
+                    case 9:
+                        exit = true;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private static void LoadNumbers()
+        {
+            array = new ArrayList();
+            for (int y = 1; y <= A; y++)
+            {
+                for (int x = 1; x <= A; x++)
                 {
                     Number num = new Number();
                     num.y = y;
@@ -24,7 +86,7 @@ namespace Sudoku_Solver
 
                     int number;
                     string input = Console.ReadLine();
-                    if (input != "" && Int32.TryParse(input, out number))
+                    if (input != "" && Int32.TryParse(input.Substring(0, 1), out number))
                     {
                         num.number = number;
                         num.initial = true;
@@ -32,18 +94,35 @@ namespace Sudoku_Solver
                     else
                         num.isEmpty = true;
                     array.Add(num);
-                    
+
                     Console.CursorTop--;
-                    Console.CursorLeft = x + 1;
+                    Console.CursorLeft = x;
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine();
-            PrintGrid();
-            Console.WriteLine("Contains Duplicates: " + ContainsDuplicates(array));
+        }
 
-            CountFilledNumbersIn3x3();
+        private static void CheckForCorrectNumber()
+        {
+            for (int y = 1; y <= A; y++)
+            {
+                ArrayList rowArray = new ArrayList();
+                for (int x = 1; x <= A; x++)
+                {
+                    foreach (Number item in array)
+	                {
+                        if (item.x == x && item.y == y)
+                        {
+                            rowArray.Add(item);
+                        }
+	                }
+                }
+                Console.WriteLine("Row " + y + ". Contains Duplicates: " + ContainsDuplicates(rowArray));
+            }
+        }
 
+        private static void CheckEach3x3ArrayForDuplicates()
+        {
             ArrayList tempArray = new ArrayList();
             for (int y1 = 1; y1 < 3; y1++)
             {
@@ -51,34 +130,15 @@ namespace Sudoku_Solver
                 {
                     foreach (Number item in array)
                     {
-                        if ((item.x < x1 * 3 && item.x > (x1 - 1) * 3) && (item.y < y1 * 3 && item.y > (y1 - 1) * 3))
+                        if ((item.x <= x1 * 3 && item.x > (x1 - 1) * 3) && (item.y <= y1 * 3 && item.y > (y1 - 1) * 3))
                         {
-                            Console.Write(x1 + ", " + y1 + "n: " + item.number +"| ");
                             tempArray.Add(item);
                         }
                     }
-                    Console.WriteLine("Temp Array " + y1 + "," + x1 +"Contains Duplicates: " + ContainsDuplicates(tempArray));
+                    Console.WriteLine("Array(x|y) " + x1 + "|" + y1 + ". Contains Duplicates: " + ContainsDuplicates(tempArray));
                     tempArray = new ArrayList();
                 }
             }
-
-            foreach (Number item in array)
-            {
-                if (item.isEmpty == true)
-                {
-                    for (int i = 1; i < 10; i++)
-                    {
-                        item.number = i;
-                        if (!ContainsDuplicates(array))
-                        {
-                            PrintGrid();
-                            Console.WriteLine("NumberFound!!!" + item.number);
-                            break;
-                        }
-                    }
-                }
-            }
-            Console.ReadLine();
         }
 
         private static void CountFilledNumbersIn3x3()
