@@ -2,3 +2,4 @@ C:\Users\GigurdA\Dropbox\Programmesana\C#\3kurss\Console\Sudoku_Solver\Sudoku_So
 C:\Users\GigurdA\Dropbox\Programmesana\C#\3kurss\Console\Sudoku_Solver\Sudoku_Solver\bin\Debug\Sudoku_Solver.pdb
 C:\Users\GigurdA\Dropbox\Programmesana\C#\3kurss\Console\Sudoku_Solver\Sudoku_Solver\obj\x86\Debug\Sudoku_Solver.exe
 C:\Users\GigurdA\Dropbox\Programmesana\C#\3kurss\Console\Sudoku_Solver\Sudoku_Solver\obj\x86\Debug\Sudoku_Solver.pdb
+C:\Users\GigurdA\Dropbox\Programmesana\C#\3kurss\Console\Sudoku_Solver\Sudoku_Solver\obj\x86\Debug\Sudoku_Solver.csprojResolveAssemblyReference.cache

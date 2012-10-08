@@ -1,0 +1,4 @@
+C:\Users\GigurdA\Dropbox\Programmesana\C#\3kurss\Console\Sudoku_Solver\Sudoku_Solver\bin\Release\Sudoku_Solver.exe
+C:\Users\GigurdA\Dropbox\Programmesana\C#\3kurss\Console\Sudoku_Solver\Sudoku_Solver\bin\Release\Sudoku_Solver.pdb
+C:\Users\GigurdA\Dropbox\Programmesana\C#\3kurss\Console\Sudoku_Solver\Sudoku_Solver\obj\x86\Release\Sudoku_Solver.exe
+C:\Users\GigurdA\Dropbox\Programmesana\C#\3kurss\Console\Sudoku_Solver\Sudoku_Solver\obj\x86\Release\Sudoku_Solver.pdb

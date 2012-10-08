@@ -1,0 +1,7 @@
+C:\Users\GigurdA\Dropbox\Programmesana\C#\3kurss\Console\Sudoku_Solver\TestSudokuSolver\bin\Debug\TestSudokuSolver.dll
+C:\Users\GigurdA\Dropbox\Programmesana\C#\3kurss\Console\Sudoku_Solver\TestSudokuSolver\bin\Debug\TestSudokuSolver.pdb
+C:\Users\GigurdA\Dropbox\Programmesana\C#\3kurss\Console\Sudoku_Solver\TestSudokuSolver\bin\Debug\Sudoku_Solver.exe
+C:\Users\GigurdA\Dropbox\Programmesana\C#\3kurss\Console\Sudoku_Solver\TestSudokuSolver\bin\Debug\Sudoku_Solver.pdb
+C:\Users\GigurdA\Dropbox\Programmesana\C#\3kurss\Console\Sudoku_Solver\TestSudokuSolver\obj\Debug\TestSudokuSolver.csprojResolveAssemblyReference.cache
+C:\Users\GigurdA\Dropbox\Programmesana\C#\3kurss\Console\Sudoku_Solver\TestSudokuSolver\obj\Debug\TestSudokuSolver.dll
+C:\Users\GigurdA\Dropbox\Programmesana\C#\3kurss\Console\Sudoku_Solver\TestSudokuSolver\obj\Debug\TestSudokuSolver.pdb
