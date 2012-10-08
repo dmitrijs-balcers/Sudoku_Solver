@@ -88,7 +88,7 @@ namespace Sudoku_Solver
             string matrix = "";
             matrix += "nnnn2345n";
             matrix += "n1n9563nn";
-            matrix += "nnnnnnn1n";
+            matrix += "nnnnnn1nn";
             matrix += "nnn837nnn";
             matrix += "nnnnnnnnn";
             matrix += "n8nn6n7nn";
@@ -218,6 +218,7 @@ namespace Sudoku_Solver
 
         public static void setPossibleNumbersInBuffer() 
         {
+
             DivideArray();
             foreach (Number item in array)
             {
@@ -235,6 +236,11 @@ namespace Sudoku_Solver
                     item.isEmpty = true;
                 }
             }
+            foreach (Number item in array)
+            {
+                if(item.isEmpty)
+                    Console.WriteLine(item.toString());
+            }
 
             foreach (Number item in array)
             {
@@ -245,12 +251,6 @@ namespace Sudoku_Solver
                     item.isEmpty = false;
                 }
                 item.buffer = new ArrayList();
-            }
-
-            foreach (Number item in array)
-            {
-                if (item.isEmpty)
-                    setPossibleNumbersInBuffer();
             }
         }
 
