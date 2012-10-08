@@ -73,6 +73,7 @@ namespace Sudoku_Solver
                         break;
                     case 7:
                         setPossibleNumbersInBuffer();
+                        PrintGrid();
                         break;
                     case 9:
                         exit = true;
@@ -95,6 +96,13 @@ namespace Sudoku_Solver
             matrix += "nn7nnnn4n";
             matrix += "23nn91n6n";
             matrix += "5nnnnnn2n";
+
+            using (StreamReader sr =new StreamReader("matrix.txt"))
+            {
+                String line = sr.ReadToEnd();
+                line = line.Replace("\r\n", string.Empty);
+                matrix = line;
+            }
 
             //matrix += "nnn815nn3";
             //matrix += "nnnnnnnnn";
@@ -236,11 +244,6 @@ namespace Sudoku_Solver
                     item.isEmpty = true;
                 }
             }
-            foreach (Number item in array)
-            {
-                if(item.isEmpty)
-                    Console.WriteLine(item.toString());
-            }
 
             foreach (Number item in array)
             {
@@ -251,6 +254,12 @@ namespace Sudoku_Solver
                     item.isEmpty = false;
                 }
                 item.buffer = new ArrayList();
+            }
+
+            foreach (Number item in array)
+            {
+                if (item.isEmpty)
+                    setPossibleNumbersInBuffer();
             }
         }
 
