@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="f8657f97-16ea-4528-83c3-f3c07340db25" name="GigurdA@GIGURDA-PC 2012-10-10 02:05:32" runUser="GigurdA-PC\GigurdA" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="8cf9a588-b456-4c91-8377-342f185a80d4">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="GigurdA_GIGURDA-PC 2012-10-10 02_05_32">
+      <DeploymentItem filename="C:\Users\GigurdA\Dropbox\Programmesana\C#\3kurss\Console\Sudoku_Solver\Sudoku_Solver\bin\Release\Sudoku_Solver.exe" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2012-10-10T02:05:32.9690946+03:00" queuing="2012-10-10T02:05:33.4911245+03:00" start="2012-10-10T02:05:33.5311268+03:00" finish="2012-10-10T02:05:34.3831755+03:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="4" executed="4" passed="3" error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="CheckEachRowForDuplicatesTest_Successfull" storage="c:\users\gigurda\dropbox\programmesana\c#\3kurss\console\sudoku_solver\testsudokusolver\bin\release\testsudokusolver.dll" id="8c2c8bee-7a66-328b-6d70-ada4cac30e10">
+      <Execution id="8b791688-ded4-4c20-a901-0a8b79d6b3fa" />
+      <TestMethod codeBase="C:/Users/GigurdA/Dropbox/Programmesana/C#/3kurss/Console/Sudoku_Solver/TestSudokuSolver/bin/Release/TestSudokuSolver.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestSudokuSolver.ProgramTest, TestSudokuSolver, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CheckEachRowForDuplicatesTest_Successfull" />
+    </UnitTest>
+    <UnitTest name="CheckEachRowForDuplicatesTest_DuplicatesFound_OnSeveralRows" storage="c:\users\gigurda\dropbox\programmesana\c#\3kurss\console\sudoku_solver\testsudokusolver\bin\release\testsudokusolver.dll" id="f60660d1-b988-83c8-dce9-39ea89619685">
+      <Execution id="4c40c3d9-1edc-45da-9713-07f1d3e6d374" />
+      <TestMethod codeBase="C:/Users/GigurdA/Dropbox/Programmesana/C#/3kurss/Console/Sudoku_Solver/TestSudokuSolver/bin/Release/TestSudokuSolver.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestSudokuSolver.ProgramTest, TestSudokuSolver, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CheckEachRowForDuplicatesTest_DuplicatesFound_OnSeveralRows" />
+    </UnitTest>
+    <UnitTest name="CheckBlockOnUniqueNumberInBuffer" storage="c:\users\gigurda\dropbox\programmesana\c#\3kurss\console\sudoku_solver\testsudokusolver\bin\release\testsudokusolver.dll" id="3f5bcb43-510b-7191-8617-86a7f6a69e9c">
+      <Execution id="a37aa638-5024-4587-bb6a-422e379c7846" />
+      <TestMethod codeBase="C:/Users/GigurdA/Dropbox/Programmesana/C#/3kurss/Console/Sudoku_Solver/TestSudokuSolver/bin/Release/TestSudokuSolver.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestSudokuSolver.ProgramTest, TestSudokuSolver, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CheckBlockOnUniqueNumberInBuffer" />
+    </UnitTest>
+    <UnitTest name="CheckEachRowForDuplicatesTest_DuplicatesFound_OnOneRow" storage="c:\users\gigurda\dropbox\programmesana\c#\3kurss\console\sudoku_solver\testsudokusolver\bin\release\testsudokusolver.dll" id="6b7a6402-fa1c-805c-71f6-8f51b79ff440">
+      <Execution id="5eceb1fe-2c7b-4f90-a490-5c135e7ab414" />
+      <TestMethod codeBase="C:/Users/GigurdA/Dropbox/Programmesana/C#/3kurss/Console/Sudoku_Solver/TestSudokuSolver/bin/Release/TestSudokuSolver.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestSudokuSolver.ProgramTest, TestSudokuSolver, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CheckEachRowForDuplicatesTest_DuplicatesFound_OnOneRow" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="3f5bcb43-510b-7191-8617-86a7f6a69e9c" executionId="a37aa638-5024-4587-bb6a-422e379c7846" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6b7a6402-fa1c-805c-71f6-8f51b79ff440" executionId="5eceb1fe-2c7b-4f90-a490-5c135e7ab414" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8c2c8bee-7a66-328b-6d70-ada4cac30e10" executionId="8b791688-ded4-4c20-a901-0a8b79d6b3fa" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f60660d1-b988-83c8-dce9-39ea89619685" executionId="4c40c3d9-1edc-45da-9713-07f1d3e6d374" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="a37aa638-5024-4587-bb6a-422e379c7846" testId="3f5bcb43-510b-7191-8617-86a7f6a69e9c" testName="CheckBlockOnUniqueNumberInBuffer" computerName="GIGURDA-PC" duration="00:00:00.0570066" startTime="2012-10-10T02:05:33.6291324+03:00" endTime="2012-10-10T02:05:34.1631629+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a37aa638-5024-4587-bb6a-422e379c7846">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.AreEqual failed. Expected:&lt;3&gt;. Actual:&lt;4&gt;. </Message>
+          <StackTrace>   at TestSudokuSolver.ProgramTest.CheckBlockOnUniqueNumberInBuffer() in C:\Users\GigurdA\Dropbox\Programmesana\C#\3kurss\Console\Sudoku_Solver\TestSudokuSolver\ProgramTest.cs:line 74
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="5eceb1fe-2c7b-4f90-a490-5c135e7ab414" testId="6b7a6402-fa1c-805c-71f6-8f51b79ff440" testName="CheckEachRowForDuplicatesTest_DuplicatesFound_OnOneRow" computerName="GIGURDA-PC" duration="00:00:00.0041158" startTime="2012-10-10T02:05:34.1641630+03:00" endTime="2012-10-10T02:05:34.1921646+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5eceb1fe-2c7b-4f90-a490-5c135e7ab414">
+    </UnitTestResult>
+    <UnitTestResult executionId="8b791688-ded4-4c20-a901-0a8b79d6b3fa" testId="8c2c8bee-7a66-328b-6d70-ada4cac30e10" testName="CheckEachRowForDuplicatesTest_Successfull" computerName="GIGURDA-PC" duration="00:00:00.0070897" startTime="2012-10-10T02:05:34.2101656+03:00" endTime="2012-10-10T02:05:34.2321669+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8b791688-ded4-4c20-a901-0a8b79d6b3fa">
+    </UnitTestResult>
+    <UnitTestResult executionId="4c40c3d9-1edc-45da-9713-07f1d3e6d374" testId="f60660d1-b988-83c8-dce9-39ea89619685" testName="CheckEachRowForDuplicatesTest_DuplicatesFound_OnSeveralRows" computerName="GIGURDA-PC" duration="00:00:00.0014992" startTime="2012-10-10T02:05:34.2361671+03:00" endTime="2012-10-10T02:05:34.2591684+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4c40c3d9-1edc-45da-9713-07f1d3e6d374">
+    </UnitTestResult>
+  </Results>
+</TestRun>

@@ -6,7 +6,7 @@ using System.Collections;
 
 namespace Sudoku_Solver
 {
-    class Number
+    class Number : ICloneable
     {
         public Number(int x, int y, int number, bool initial, bool isEmpty) 
         {
@@ -16,6 +16,11 @@ namespace Sudoku_Solver
             this.number = number;
             this.initial = initial;
             this.isEmpty = isEmpty;
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
 
         public int number { get; set; }

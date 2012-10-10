@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="9f4fb7d6-cc58-4f9c-bda1-3c2267dbb3c7" name="GigurdA@GIGURDA-PC 2012-10-10 02:06:27" runUser="GigurdA-PC\GigurdA" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="8cf9a588-b456-4c91-8377-342f185a80d4">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="GigurdA_GIGURDA-PC 2012-10-10 02_06_27">
+      <DeploymentItem filename="C:\Users\GigurdA\Dropbox\Programmesana\C#\3kurss\Console\Sudoku_Solver\Sudoku_Solver\bin\Release\Sudoku_Solver.exe" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2012-10-10T02:06:27.0601885+03:00" queuing="2012-10-10T02:06:27.1351928+03:00" start="2012-10-10T02:06:27.1711948+03:00" finish="2012-10-10T02:06:27.5862185+03:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="1" executed="1" error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="CheckBlockOnUniqueNumberInBuffer" storage="c:\users\gigurda\dropbox\programmesana\c#\3kurss\console\sudoku_solver\testsudokusolver\bin\release\testsudokusolver.dll" id="3f5bcb43-510b-7191-8617-86a7f6a69e9c">
+      <Execution id="59f37814-9668-4c21-b2ea-800b63c0b466" />
+      <TestMethod codeBase="C:/Users/GigurdA/Dropbox/Programmesana/C#/3kurss/Console/Sudoku_Solver/TestSudokuSolver/bin/Release/TestSudokuSolver.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestSudokuSolver.ProgramTest, TestSudokuSolver, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CheckBlockOnUniqueNumberInBuffer" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="3f5bcb43-510b-7191-8617-86a7f6a69e9c" executionId="59f37814-9668-4c21-b2ea-800b63c0b466" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="59f37814-9668-4c21-b2ea-800b63c0b466" testId="3f5bcb43-510b-7191-8617-86a7f6a69e9c" testName="CheckBlockOnUniqueNumberInBuffer" computerName="GIGURDA-PC" duration="00:00:00.1439188" startTime="2012-10-10T02:06:27.1901959+03:00" endTime="2012-10-10T02:06:27.5582169+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="59f37814-9668-4c21-b2ea-800b63c0b466">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.IsNotNull failed. </Message>
+          <StackTrace>   at TestSudokuSolver.ProgramTest.CheckBlockOnUniqueNumberInBuffer() in C:\Users\GigurdA\Dropbox\Programmesana\C#\3kurss\Console\Sudoku_Solver\TestSudokuSolver\ProgramTest.cs:line 73
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

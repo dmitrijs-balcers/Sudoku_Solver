@@ -15,29 +15,17 @@ namespace Sudoku_Solver
         private static ArrayList blocks3x3 = null;
 
         private const short A = 9;
+        private static int attempt = 0;
 
         static void Main(string[] args)
         {
             Console.WriteLine("Welkome to Sudou Solver");
-
-            bool exit = false;
-            while (!exit)
+            while (true)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Please choose an option:");
-                Console.WriteLine("1 - Read Matrix");
-                Console.WriteLine("2 - Check Each 3x3 array");
-                Console.WriteLine("3 - Print Grid");
-                Console.WriteLine("4 - See info of Number x|y");
-                Console.WriteLine("5 - DivideArray");
-                Console.WriteLine("6 - CheckAllNumebrs");
-                Console.WriteLine("7 - set Possible Numebrs and then output number.ToString()");
-                Console.WriteLine("9 - Exit programm");
-                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                PrintMenu();
 
                 string input = Console.ReadLine();
                 int opt;
-                
                 
                 Int32.TryParse(input.Substring(0, 1), out opt);
                 switch (opt)
@@ -46,56 +34,33 @@ namespace Sudoku_Solver
                         readMatrix();
                         break;
                     case 2:
-                        CheckEachBlockForDuplicates();
+                        PrintGrid();
                         break;
                     case 3:
-                        PrintGrid();
-                        break;
-                    case 4:
-                        int x;
-                        int y;
-                        Console.WriteLine("Insert x");
-                        string inp = Console.ReadLine();
-                        Int32.TryParse(inp.Substring(0, 1), out x);
-                        Console.WriteLine("Insert y");
-                        inp = Console.ReadLine();
-                        Int32.TryParse(inp.Substring(0, 1), out y);
-
-                        foreach (Number item in array)
-                            if (item.x == x && item.y == y)
-                                Console.WriteLine(item.toString());
-                        break;
-                    case 5:
-                        DivideArray();
-                        break;
-                    case 6:
-                        CheckAllNumebrs();
-                        break;
-                    case 7:
                         setPossibleNumbersInBuffer();
-                        PrintGrid();
                         break;
                     case 9:
-                        exit = true;
-                        break;
+                        return;
                     default:
                         break;
                 }
             }
         }
 
+        private static void PrintMenu()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Please choose an option:");
+            Console.WriteLine("1 - Read Matrix");
+            Console.WriteLine("2 - Print Grid");
+            Console.WriteLine("3 - set Possible Numebrs + Print()");
+            Console.WriteLine("9 - Exit programm");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+        }
+
         public static void readMatrix() 
         {
             string matrix = "";
-            matrix += "nnnn2345n";
-            matrix += "n1n9563nn";
-            matrix += "nnnnnn1nn";
-            matrix += "nnn837nnn";
-            matrix += "nnnnnnnnn";
-            matrix += "n8nn6n7nn";
-            matrix += "nn7nnnn4n";
-            matrix += "23nn91n6n";
-            matrix += "5nnnnnn2n";
 
             using (StreamReader sr =new StreamReader("matrix.txt"))
             {
@@ -104,35 +69,6 @@ namespace Sudoku_Solver
                 matrix = line;
             }
 
-            //matrix += "nnn815nn3";
-            //matrix += "nnnnnnnnn";
-            //matrix += "nnn294n5n";
-            //matrix += "n81n7354n";
-            //matrix += "nn7568n9n";
-            //matrix += "n6n142nn8";
-            //matrix += "nn835n7n2";
-            //matrix += "nn3629n1n";
-            //matrix += "nnnn8nnnn";
-
-            //matrix += "n17n3458n";
-            //matrix += "n54689nnn";
-            //matrix += "nn37512nn";
-            //matrix += "nnn178392";
-            //matrix += "nnn34n7n6";
-            //matrix += "nnn92nnnn";
-            //matrix += "nnn413nnn";
-            //matrix += "nn256n9n3";
-            //matrix += "nnnnnnnnn";
-
-            //matrix += "n17234589";
-            //matrix += "254689137";
-            //matrix += "893751264";
-            //matrix += "546178392";
-            //matrix += "928345716";
-            //matrix += "371926458";
-            //matrix += "769413825";
-            //matrix += "182567943";
-            //matrix += "435892671";
             int x = 0;
             int y = 1;
             foreach (char item in matrix)
@@ -142,19 +78,23 @@ namespace Sudoku_Solver
                 Number num = new Number(x, y, number, false, true);
 
                 if (!item.Equals("n") && Int32.TryParse(item.ToString(), out number))
-                {
-                    num.number = number;
-                    num.initial = true;
-                    num.isEmpty = false;
-                }
+                    SetInitialNumber(number, num);
+
                 if (x == A)
                 {
-                    y++;
+                    y++; 
                     x = 0;
                 }
                 
                 array.Add(num);
             }
+        }
+
+        private static void SetInitialNumber(int number, Number num)
+        {
+            num.number = number;
+            num.initial = true;
+            num.isEmpty = false;
         }
 
         private static void LoadNumbers()
@@ -217,8 +157,7 @@ namespace Sudoku_Solver
                 {
                     Block block = new Block(x1, y1);
                     foreach (Number item in array)
-                        if ((item.x <= x1 * 3 && item.x > (x1 - 1) * 3) && (item.y <= y1 * 3 && item.y > (y1 - 1) * 3))
-                            block.al.Add(item);
+                        if (isNumberInParticularBlock(x1, y1, item)) block.al.Add(item);
                     blocks3x3.Add(block);
                 }
             }
@@ -226,110 +165,115 @@ namespace Sudoku_Solver
 
         public static void setPossibleNumbersInBuffer() 
         {
-
             DivideArray();
+
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.WriteLine("<<<<<<<<<<<<<===>>>>>>>>>>>>>>>>>");
+            Console.BackgroundColor = ConsoleColor.Black;
             foreach (Number item in array)
             {
-                if (item.isEmpty)
+                if (item.isEmpty) { 
+                    FillBuffer(item);
+                    Console.WriteLine(item.toString());
+                }
+                
+            }
+
+            if (attempt > 15)
+            {
+                foreach (Block item in blocks3x3)
                 {
-                    item.isEmpty = false;
-                    for (int current = 1; current <= 9; current++)
+                    Number tmp = FindUniqueNumberInBlockNumbersBuffer(item);
+                    if (tmp != null)
                     {
-                        item.number = current;
-                        DivideArray();
-                        if (CheckAllNumebrs())
-                            item.buffer.Add(current);
+                        foreach (Number n in array)
+                        {
+                            if (n.x == tmp.x && n.y == tmp.y)
+                            {
+                                n.number = tmp.number;
+                                n.isEmpty = false;
+                            }
+                        }
                     }
-                    item.number = 0;
-                    item.isEmpty = true;
                 }
             }
+            attempt++;
+
 
             foreach (Number item in array)
             {
-                if (item.buffer.Count == 1) 
-                {
-                    int[] bn = item.buffer.ToArray(typeof(int)) as int[];
-                    item.number = bn[0];
-                    item.isEmpty = false;
-                }
-                item.buffer = new ArrayList();
+                ClearBuffferAndSetNumberIfPossible(item);
             }
 
-            foreach (Number item in array)
+            var temp = from Number n in array where n.isEmpty select n;
+            if (temp.Count() > 0) setPossibleNumbersInBuffer();
+
+        }
+
+        private static void FillBuffer(Number item)
+        {
+            item.isEmpty = false;
+            for (int current = 1; current <= 9; current++)
             {
-                if (item.isEmpty)
-                    setPossibleNumbersInBuffer();
+                item.number = current;
+                DivideArray();
+                if (CheckAllNumebrs())
+                    item.buffer.Add(current);
             }
+            item.number = 0;
+            item.isEmpty = true;
+        }
+
+        private static void ClearBuffferAndSetNumberIfPossible(Number item)
+        {
+            if (item.buffer.Count == 1)
+            {
+                int[] bn = item.buffer.ToArray(typeof(int)) as int[];
+                item.number = bn[0];
+                item.isEmpty = false;
+            }
+            item.buffer = new ArrayList();
         }
 
         // TODO: I should use array (probably simply divide it here)
         private static bool CheckAllNumebrs() 
         {
-            bool isAllNumbersOk = false;
-            if (!CheckEachRowForDuplicates(rows) && !CheckEachColumnForDuplicates() && !CheckEachBlockForDuplicates())
-                isAllNumbersOk = true;
-            return isAllNumbersOk;
+            return (!CheckEachRowForDuplicates(rows) && !CheckEachColumnForDuplicates() && !CheckEachBlockForDuplicates()) ? true : false;
         }
 
         public static bool CheckEachRowForDuplicates(ArrayList rows) 
         {
-            bool containsDupl = true;
             foreach (Row row in rows)
             {
-                ArrayList tempArray = new ArrayList();
-                foreach (Number item in row.array)
-                    tempArray.Add(item);
-                containsDupl = ContainsDuplicates(tempArray);
-                if (containsDupl)
-                    return containsDupl;
+                var tempArray = from Number item in row.array select item;
+                if (ContainsDuplicates(tempArray)) return true;
             }
-            return containsDupl;
+            return false;
         }
 
         private static bool CheckEachColumnForDuplicates()
         {
-            bool containsDupl = true;
             foreach (Column column in columns)
             {
-                ArrayList tempArray = new ArrayList();
-                foreach (Number item in column.array)
-                    tempArray.Add(item);
-                containsDupl = ContainsDuplicates(tempArray);
-                if (containsDupl)
-                    return containsDupl;
+                var tempArray = from Number item in column.array select item;
+                if (ContainsDuplicates(tempArray)) return true;
             }
-            return containsDupl;
+            return false;
         }
 
         private static bool CheckEachBlockForDuplicates()
         {
-            bool containsDupl = true;
             foreach (Block block in blocks3x3)
             {
-                ArrayList tempArray = new ArrayList();
-                foreach (Number item in block.al)
-                    if (isNumberInParticularBlock(block, item))
-                        tempArray.Add(item);
-                containsDupl = ContainsDuplicates(tempArray);
-                if (containsDupl)
-                    return containsDupl;
+                var tempArray = from Number item in block.al where isNumberInParticularBlock(block.x, block.y, item) select item;
+                if (ContainsDuplicates(tempArray)) return true;
             }
-            return containsDupl;
+            return false;
         }
 
-        private static bool isNumberInParticularBlock(Block block, Number item)
+        private static bool isNumberInParticularBlock(int x, int y, Number item)
         {
-            return (item.x <= block.x * 3 && item.x > (block.x - 1) * 3) && (item.y <= block.y * 3 && item.y > (block.y - 1) * 3);
-        }
-
-        private static void CountFilledNumbersIn3x3()
-        {
-            int numbersFilled = 0;
-            if (!ContainsDuplicates(array))
-                foreach (Number item in array)
-                    if (item.number != 0)
-                        numbersFilled++;
+            return (item.x <= x * 3 && item.x > (x - 1) * 3) && (item.y <= y * 3 && item.y > (y - 1) * 3);
         }
 
         private static void PrintGrid()
@@ -348,7 +292,7 @@ namespace Sudoku_Solver
             Console.WriteLine();
         }
 
-        public static bool ContainsDuplicates(ArrayList arrayToCheck) 
+        public static bool ContainsDuplicates(IEnumerable arrayToCheck) 
         {
             ArrayList arrayList = new ArrayList();
             foreach (Number item in arrayToCheck)
@@ -362,5 +306,91 @@ namespace Sudoku_Solver
             }
             return false;
         }
+
+        internal static Number FindUniqueNumberInBlockNumbersBuffer(Block block)
+        {
+            ArrayList possibleNumbers = new ArrayList();
+            ArrayList blackList = new ArrayList();
+            foreach (Number item in block.al)
+            {
+                foreach (int n in item.buffer)
+                {
+                    if (!searchInPossibleNumbersAndRemove(possibleNumbers, blackList, n) && !searchInBlackList(blackList, n))
+                    {
+                        Number tempN = (Number) item.Clone();
+                        tempN.number = n;
+                        possibleNumbers.Add(new PossibleNumber(tempN, n));
+                    }
+                }
+            }
+            if (possibleNumbers.Count == 1)
+                return ((PossibleNumber)possibleNumbers[0]).number;
+            else
+                return null;
+        }
+
+        private static bool searchInPossibleNumbersAndRemove(ArrayList possibleNumbers, ArrayList blackList, int integer)
+        {
+            foreach (PossibleNumber item in possibleNumbers)
+            {
+                if (item.integer == integer)
+                {
+                    possibleNumbers.Remove(item);
+                    blackList.Add(item);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private static bool searchInBlackList(ArrayList blackList, int integer) 
+        {
+            foreach (PossibleNumber item in blackList)
+            {
+                if (item.integer == integer)
+                    return true;
+            }
+            return false;
+        }
+
     }
+    //matrix += "nnnn2345n";
+    //matrix += "n1n9563nn";
+    //matrix += "nnnnnn1nn";
+    //matrix += "nnn837nnn";
+    //matrix += "nnnnnnnnn";
+    //matrix += "n8nn6n7nn";
+    //matrix += "nn7nnnn4n";
+    //matrix += "23nn91n6n";
+    //matrix += "5nnnnnn2n";
+
+    //matrix += "nnn815nn3";
+    //matrix += "nnnnnnnnn";
+    //matrix += "nnn294n5n";
+    //matrix += "n81n7354n";
+    //matrix += "nn7568n9n";
+    //matrix += "n6n142nn8";
+    //matrix += "nn835n7n2";
+    //matrix += "nn3629n1n";
+    //matrix += "nnnn8nnnn";
+
+    //matrix += "n17n3458n";
+    //matrix += "n54689nnn";
+    //matrix += "nn37512nn";
+    //matrix += "nnn178392";
+    //matrix += "nnn34n7n6";
+    //matrix += "nnn92nnnn";
+    //matrix += "nnn413nnn";
+    //matrix += "nn256n9n3";
+    //matrix += "nnnnnnnnn";
+
+    //matrix += "n17234589";
+    //matrix += "254689137";
+    //matrix += "893751264";
+    //matrix += "546178392";
+    //matrix += "928345716";
+    //matrix += "371926458";
+    //matrix += "769413825";
+    //matrix += "182567943";
+    //matrix += "435892671";
 }

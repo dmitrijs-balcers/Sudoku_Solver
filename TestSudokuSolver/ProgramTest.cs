@@ -54,6 +54,55 @@ namespace TestSudokuSolver
         #endregion
 
         [TestMethod()]
+        public void CheckBlockOnUniqueNumberInBuffer() 
+        {
+            Number num1 = new Number(1, 1, 1, true, false);
+            num1.buffer.Add(2);
+            num1.buffer.Add(5);
+            num1.buffer.Add(6);
+            num1.buffer.Add(8);
+            num1.buffer.Add(9);
+            Number num2 = new Number(2, 1, 2, true, false);
+            num2.buffer.Add(2);
+            num2.buffer.Add(6);
+            num2.buffer.Add(8);
+            Number num3 = new Number(2, 1, 2, true, false);
+            num3.buffer.Add(2);
+            num3.buffer.Add(5);
+            num3.buffer.Add(8);
+            num3.buffer.Add(9);
+            Number num4 = new Number(2, 1, 2, true, false);
+            num4.buffer.Add(1);
+            num4.buffer.Add(2);
+            num4.buffer.Add(6);
+            num4.buffer.Add(8);
+            Number num5 = new Number(2, 1, 2, true, false);
+            num5.buffer.Add(2);
+            num5.buffer.Add(5);
+            num5.buffer.Add(8);
+            num5.buffer.Add(9);
+            Number num6 = new Number(2, 1, 2, true, false);
+            num6.buffer.Add(2);
+            num6.buffer.Add(5);
+            num6.buffer.Add(6);
+            num6.buffer.Add(8);
+            num6.buffer.Add(9);
+            Block block = new Block(1, 1);
+            block.al.Add(num1);
+            block.al.Add(num2);
+            block.al.Add(num3);
+            block.al.Add(num4);
+            block.al.Add(num5);
+            block.al.Add(num6);
+
+            int expected = 1;
+            Number actual = Program.FindUniqueNumberInBlockNumbersBuffer(block);
+            Assert.IsNotNull(actual);
+            Assert.AreEqual(expected, actual.number);
+
+        }
+
+        [TestMethod()]
         public void CheckEachRowForDuplicatesTest_Successfull()
         {
             Number num1 = new Number(1, 1, 1, true, false);
