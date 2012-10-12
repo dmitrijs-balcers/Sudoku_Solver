@@ -10,7 +10,8 @@ namespace Sudoku_Solver
     {
         public Number(int x, int y, int number, bool initial, bool isEmpty) 
         {
-            buffer = new ArrayList();
+            blackListBuffer = new List<int>();
+            buffer = new List<int>();
             this.x = x;
             this.y = y;
             this.number = number;
@@ -28,16 +29,13 @@ namespace Sudoku_Solver
         public int y { get; set; }
         public bool initial { get; set; }
         public bool isEmpty { get; set; }
-        public ArrayList buffer { get; set; }
+        public List<int> buffer { get; set; }
+        public List<int> blackListBuffer { get; set; }
 
         public String toString() {
             string ret = "|num: " + number + " x|y - " + x + "|" + y + ". " + " isEmpty: " + isEmpty + ". Buffer: ";
-            int[] array = buffer.ToArray(typeof(int)) as int[];
-            foreach (int value in array)
-            {
+            foreach (int value in buffer.ToArray())
                 ret += value + ", ";
-            }
-
             return ret;
         }
     }

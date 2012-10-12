@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace TestSudokuSolver
 {
@@ -9,7 +10,7 @@ namespace TestSudokuSolver
     public class ProgramTest
     {
         private TestContext testContextInstance;
-        private ArrayList rows;
+        private List<Row> rows;
         public TestContext TestContext
         {
             get
@@ -42,7 +43,7 @@ namespace TestSudokuSolver
         [TestInitialize()]
         public void MyTestInitialize()
         {
-            rows = new ArrayList();
+            rows = new List<Row>();
         }
         //
         //Use TestCleanup to run code after each test has run

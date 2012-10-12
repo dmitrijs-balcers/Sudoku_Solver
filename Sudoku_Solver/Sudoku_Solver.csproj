@@ -45,11 +45,14 @@
   <ItemGroup>
     <Compile Include="Block.cs" />
     <Compile Include="Column.cs" />
+    <Compile Include="EmptyBufferForEmptyNumberException.cs" />
+    <Compile Include="ImStuckException.cs" />
     <Compile Include="Number.cs" />
     <Compile Include="PossibleNumber.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Row.cs" />
+    <Compile Include="SolvingFailedException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
